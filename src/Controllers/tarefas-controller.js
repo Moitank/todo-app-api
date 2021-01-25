@@ -1,13 +1,17 @@
+const Tarefas = require('../Models/tarefas');
+const { tarefasbd } = require('../infra/bd');
 
-
-module.exports = (app) =>{
+module.exports = (app, bd) =>{
 
     app.get('/tarefas', (req, res) => {
-        res.send('<h1>Tarefas</h1>');
+        res.send(bd.tarefasbd);
       });
 
       app.post('/tarefas', (req, res) => {
-        res.send('Rota de post de tarefas ativada: tarefa adicionada ao banco de dados')
+      const trf = new Tarefas(req.body.titulo,req.body.descricao,req.body.status,req.body.dataCriacao)
+      bd.tarefasbd.push(trf)
+      console.log(bd)
+        res.send('Tarefa adicionada com sucesso')
       })
     }
 

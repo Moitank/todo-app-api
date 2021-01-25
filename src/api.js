@@ -1,22 +1,22 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+const usuariosController = require('./Controllers/usuario-controller');
+const tarefasController = require ('./Controllers/tarefas-controller');
+const bd = require('./infra/bd')
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('<h1>Testado com sucesso</h1>')
-})
+app.use(bodyParser.json())
 
-const usuariosController = require('./Controllers/usuario-controller');
-const tarefasController = require ('./Controllers/tarefas-controller');
+
 
 const port = 8080
 
 
 
-usuariosController(app);
+usuariosController(app,bd);
 
-tarefasController(app);
-
+tarefasController(app, bd);
 
 
 app.listen(port, () => {
