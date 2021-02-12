@@ -1,8 +1,6 @@
-
-const Usuario = require('../Models/usuarios');
-const usuario = require('../Models/usuarios');
+const bodyParser = require("body-parser");
 
 module.exports = {
-    usuariosbd: [new Usuario ('Marcelo', 'marcelo@gmail.com', 'senha123')],
-    tarefasbd: []
+    usuariosBD: [],
+    tarefasBD: []
 }
